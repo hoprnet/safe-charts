@@ -14,7 +14,7 @@ metadata:
     {{- .Values.commonAnnotations | toYaml | nindent 4 }}
 {{- end }}
 spec:
-  replicas: {{ .Values.replicas }}
+  replicas: {{ .Values.replicas.contracts }}
   strategy:
     type: {{ .Values.strategy }}
   selector:
