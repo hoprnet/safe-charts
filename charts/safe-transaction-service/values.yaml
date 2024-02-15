@@ -11,7 +11,7 @@ fullnameOverride: ""
 ## @section Installation Parameters
 ##
 
-replicas: 
+replicas:
   ## @param replicas.contracts Replicas for contracts deployment
   ##
   contracts: 1
@@ -47,17 +47,42 @@ nodeSelector: {}
 
 ## @param resources Resource specification to deployment
 ##
-resources: {}
-    # We usually recommend not to specify default resources and to leave this as a conscious
-    # choice for the user. This also increases chances charts run on environments with little
-    # resources, such as Minikube. If you do want to specify resources, uncomment the following
-    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    # limits:
-    #   cpu: 100m
-    #   memory: 128Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
+resources:
+  contracts:
+    limits:
+      cpu: 2
+      memory: 8G
+    requests:
+      cpu: 1
+      memory: 2G
+  indexer:
+    limits:
+      cpu: 4
+      memory: 16G
+    requests:
+      cpu: 1
+      memory: 2G
+  notifications:
+    limits:
+      cpu: 1
+      memory: 2G
+    requests:
+      cpu: 100m
+      memory: 1G
+  scheduler:
+    limits:
+      cpu: 1
+      memory: 2G
+    requests:
+      cpu: 100m
+      memory: 1G
+  web:
+    limits:
+      cpu: 1
+      memory: 2G
+    requests:
+      cpu: 250m
+      memory: 1G
 
 ## @param tolerations Tolerations specifications to deployment
 ##

@@ -42,24 +42,14 @@ spec:
           capabilities:
             drop:
             - ALL
-        {{- if .Values.resources.contracts }}
         resources: {{- toYaml .Values.resources.contracts | nindent 12 }}
-        {{- else }}
-        resources:
-          limits:
-            cpu: 4
-            memory: 16G
-          requests:
-            cpu: 1
-            memory: 2G
-        {{- end }}
         env:
           - name: DB_MAX_CONNS
-            value: "8"
+            value: "4"
           - name: WORKER_MAX_MEMORY_PER_CHILD
             value: "2097152" # in KB, all RAM divided by workers
           - name: CELERYD_CONCURRENCY
-            value: "8" # 2x the core count
+            value: "4" # 2x the core count
           - name: WORKER_QUEUES
             value: contracts,tokens
         envFrom:

@@ -43,17 +43,7 @@ spec:
           capabilities:
             drop:
             - ALL
-        {{- if .Values.resources.web }}
         resources: {{- toYaml .Values.resources.web | nindent 12 }}
-        {{- else }}
-        resources:
-          limits:
-            cpu: 1
-            memory: 2G
-          requests:
-            cpu: 250m
-            memory: 1G
-        {{- end }}
         envFrom:
           - configMapRef:
               name: {{ include "safe-transaction.fullname" . }}

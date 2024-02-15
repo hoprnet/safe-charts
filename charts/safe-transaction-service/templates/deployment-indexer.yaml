@@ -42,17 +42,7 @@ spec:
           capabilities:
             drop:
             - ALL
-        {{- if .Values.resources.indexer }}
         resources: {{- toYaml .Values.resources.indexer | nindent 12 }}
-        {{- else }}
-        resources:
-          limits:
-            cpu: 4
-            memory: 16G
-          requests:
-            cpu: 1
-            memory: 2G
-        {{- end }}
         env:
           - name: DB_MAX_CONNS
             value: "8"

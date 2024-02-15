@@ -42,17 +42,7 @@ spec:
           capabilities:
             drop:
             - ALL
-        {{- if .Values.resources.notifications }}
         resources: {{- toYaml .Values.resources.notifications | nindent 12 }}
-        {{- else }}
-        resources:
-          limits:
-            cpu: 1
-            memory: 2G
-          requests:
-            cpu: 100m
-            memory: 1G
-        {{- end }}
         env:
           - name: DB_MAX_CONNS
             value: "2"
