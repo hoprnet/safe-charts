@@ -43,16 +43,16 @@ spec:
           capabilities:
             drop:
             - ALL
-        {{- if .Values.resources }}
-        resources: {{- toYaml .Values.resources | nindent 12 }}
+        {{- if .Values.resources.web }}
+        resources: {{- toYaml .Values.resources.web | nindent 12 }}
         {{- else }}
         resources:
           limits:
-            cpu: 500m
-            memory: 512Mi
+            cpu: 1
+            memory: 2G
           requests:
             cpu: 250m
-            memory: 128Mi
+            memory: 1G
         {{- end }}
         envFrom:
           - configMapRef:
