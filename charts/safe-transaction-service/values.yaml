@@ -11,9 +11,22 @@ fullnameOverride: ""
 ## @section Installation Parameters
 ##
 
-## @param replicas Replicas for deployment
-##
-replicas: 1
+replicas: 
+  ## @param replicas.contracts Replicas for contracts deployment
+  ##
+  contracts: 1
+  ## @param replicas.indexer Replicas for contracts deployment
+  ##
+  indexer: 1
+  ## @param replicas.notifications Replicas for contracts deployment
+  ##
+  notifications: 1
+  ## @param replicas.scheduler Replicas for contracts deployment
+  ##
+  scheduler: 1
+  ## @param replicas.web Replicas for contracts deployment
+  ##
+  web: 1
 
 ## @param strategy Strategy for deployment
 ##
