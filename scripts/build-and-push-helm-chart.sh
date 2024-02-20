@@ -4,13 +4,13 @@
 set -Eeuo pipefail
 
 : ${1:?"1st parameter <name> missing"}
-: ${2:?"2nd parameter <version> missing"}
-: ${3:?"3rd parameter <repository> missing"}
+: ${2:?"2nd parameter <repository> missing"}
 
 declare name version repository
 name="${1}"
-version="${2}"
-repository="${3}"
+repository="${2}"
+
+version="$(grep version charts/${name}/Chart.yaml | awk '{print $2;}')"
 
 helm package "charts/${name}" --version "${version}"
 

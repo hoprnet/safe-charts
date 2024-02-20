@@ -45,11 +45,11 @@ spec:
         resources: {{- toYaml .Values.resources.indexer | nindent 10 }}
         env:
           - name: DB_MAX_CONNS
-            value: {{ .Values.config.indexer.db_max_conns }}
+            value: "{{ .Values.config.indexer.db_max_conns }}"
           - name: WORKER_MAX_MEMORY_PER_CHILD
-            value: {{ .Values.config.indexer.worker_max_memory }}
+            value: "{{ .Values.config.indexer.worker_max_memory }}"
           - name: CELERYD_CONCURRENCY
-            value: {{ .Values.config.indexer.worker_count }}
+            value: "{{ .Values.config.indexer.worker_count }}"
           - name: RUN_MIGRATIONS
             value: "1"
           - name: WORKER_QUEUES
