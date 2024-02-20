@@ -45,11 +45,11 @@ spec:
         resources: {{- toYaml .Values.resources.contracts | nindent 10 }}
         env:
           - name: DB_MAX_CONNS
-            value: "4"
+            value: {{ .Values.config.contracts.db_max_conns }}
           - name: WORKER_MAX_MEMORY_PER_CHILD
-            value: "2097152" # in KB, all RAM divided by workers
+            value: {{ .Values.config.contracts.worker_max_memory }}
           - name: CELERYD_CONCURRENCY
-            value: "4" # 2x the core count
+            value: {{ .Values.config.contracts.worker_count }}
           - name: WORKER_QUEUES
             value: contracts,tokens
         envFrom:

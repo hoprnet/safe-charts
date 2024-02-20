@@ -45,11 +45,11 @@ spec:
         resources: {{- toYaml .Values.resources.notifications | nindent 10 }}
         env:
           - name: DB_MAX_CONNS
-            value: "2"
+            value: {{ .Values.config.notifications.db_max_conns }}
           - name: WORKER_MAX_MEMORY_PER_CHILD
-            value: "1097152" # in KB, all RAM divided by workers
+            value: {{ .Values.config.notifications.worker_max_memory }}
           - name: CELERYD_CONCURRENCY
-            value: "2" # 2x the core count
+            value: {{ .Values.config.notifications.worker_count }}
           - name: WORKER_QUEUES
             value: notifications,webhooks
         envFrom:
