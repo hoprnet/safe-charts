@@ -42,7 +42,7 @@ spec:
           capabilities:
             drop:
             - ALL
-        resources: {{- toYaml .Values.resources.scheduler | nindent 12 }}
+        resources: {{- toYaml .Values.resources.scheduler | nindent 10 }}
         envFrom:
           - configMapRef:
               name: {{ include "safe-transaction.fullname" . }}
