@@ -163,6 +163,28 @@ config:
   ##
   extraEnvVars: {}
 
+  ## @param config.indexer app-specific configuration values for indexer
+  indexer:
+    db_max_conns: "8"
+    worker_max_memory: "2097152" # in KB, all RAM divided by workers
+    worker_count: "8" # 2x core count
+
+  ## @param config.notifications app-specific configuration values for notifications worker
+  notifications:
+    db_max_conns: "2"
+    worker_max_memory: "1097152" # in KB, all RAM divided by workers
+    worker_count: "2" # 2x core count
+
+  ## @param config.contracts app-specific configuration values for contracts worker
+  contracts:
+    db_max_conns: "4"
+    worker_max_memory: "2097152" # in KB, all RAM divided by workers
+    worker_count: "4" # 2x core count
+
+  ## @param config.web app-specific configuration values for web worker
+  web:
+    worker_count: "4" # 4x core count
+
   django:
     ## @param config.django.allowedHosts Allowed hosts
     allowedHosts: "*"

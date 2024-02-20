@@ -44,6 +44,9 @@ spec:
             drop:
             - ALL
         resources: {{- toYaml .Values.resources.web | nindent 10 }}
+        env:
+          - name: WEB_CONCURRENCY
+            value: {{ .Values.config.web.worker_count }}
         envFrom:
           - configMapRef:
               name: {{ include "safe-transaction.fullname" . }}
