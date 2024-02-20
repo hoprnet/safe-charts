@@ -42,7 +42,7 @@ spec:
           capabilities:
             drop:
             - ALL
-        resources: {{- toYaml .Values.resources.indexer | nindent 12 }}
+        resources: {{- toYaml .Values.resources.indexer | nindent 10 }}
         env:
           - name: DB_MAX_CONNS
             value: "8"

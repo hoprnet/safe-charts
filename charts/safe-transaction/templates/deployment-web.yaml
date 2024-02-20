@@ -43,7 +43,7 @@ spec:
           capabilities:
             drop:
             - ALL
-        resources: {{- toYaml .Values.resources.web | nindent 12 }}
+        resources: {{- toYaml .Values.resources.web | nindent 10 }}
         envFrom:
           - configMapRef:
               name: {{ include "safe-transaction.fullname" . }}
@@ -71,17 +71,7 @@ spec:
       - name: web
         image: "registry.hub.docker.com/library/nginx:alpine"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        {{- if .Values.resources }}
-        resources: {{- toYaml .Values.resources | nindent 12 }}
-        {{- else }}
-        resources:
-          limits:
-            cpu: 500m
-            memory: 512Mi
-          requests:
-            cpu: 250m
-            memory: 128Mi
-        {{- end }}
+        resources: {{- toYaml .Values.resources.web | nindent 10 }}
         # env:
         #   - name: NGINX_ENTRYPOINT_QUIET_LOGS
         #     value: "true"
