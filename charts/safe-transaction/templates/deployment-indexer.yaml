@@ -93,4 +93,6 @@ spec:
         - name: media-content
           persistentVolumeClaim:
             claimName: {{ include "safe-transaction.fullname" . }}-media
+      securityContext:
+        fsGroup: 999
 
