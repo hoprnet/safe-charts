@@ -1,7 +1,7 @@
 ---
 apiVersion: v2
 name: safe-config
-version: 0.1.3
+version: 0.1.4
 appVersion: v2.59.0
 description: A Helm chart for configuration service
 type: application

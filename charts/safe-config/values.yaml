@@ -56,6 +56,20 @@ tolerations: []
 ##
 affinity: {}
 
+persistence:
+  ## @param persistence.storageClassName StorageClassName to be used
+  ##
+  storageClassName:
+
+  ## @param persistence.accessModes List of AccessModes to the Volume
+  ##
+  accessModes:
+    - ReadWriteOnce
+
+  ## @param persistence.size Volume size
+  ##
+  size: 1Gi
+
 image:
   ## @param image.registry Docker registry to deployment
   ##
