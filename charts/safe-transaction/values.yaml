@@ -182,6 +182,7 @@ config:
     db_max_conns: "8"
     worker_max_memory: "2097152" # in KB, all RAM divided by workers
     worker_count: "8" # 2x core count
+    run_migrations: "0" # do not run migrations, this would be trouble if more than one instance is running
 
   ## @param config.notifications app-specific configuration values for notifications worker
   notifications:

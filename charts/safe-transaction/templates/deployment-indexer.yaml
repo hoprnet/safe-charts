@@ -51,7 +51,7 @@ spec:
           - name: CELERYD_CONCURRENCY
             value: "{{ .Values.config.indexer.worker_count }}"
           - name: RUN_MIGRATIONS
-            value: "1"
+            value: "{{ .Values.config.indexer.run_migrations }}"
           - name: WORKER_QUEUES
             value: default,indexing
         envFrom:
