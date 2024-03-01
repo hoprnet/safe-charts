@@ -101,6 +101,7 @@ persistence:
   ##
   accessModes:
     - ReadWriteOnce
+    - ReadWriteMany
 
   ## @param persistence.size Volume size
   ##
