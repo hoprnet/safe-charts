@@ -141,8 +141,6 @@ config:
   redis:
     ## @param config.redis.secretReferenceKey Reference to an existing secret containing the following entries: REDIS_URI
     secretReferenceKey: ""
-    ## @param config.redis.password Redis user's password
-    password: ""
     ## @param config.redis.host Redis server host
     host: ""
     ## @param config.redis.port Redis server port
@@ -151,8 +149,6 @@ config:
   redisMainnet:
     ## @param config.redisMainnet.secretReferenceKey Reference to an existing secret containing the following entries: REDIS_URI_MAINNET
     secretReferenceKey: ""
-    ## @param config.redisMainnet.password Redis user's password
-    password: ""
     ## @param config.redisMainnet.host Redis server host
     host: ""
     ## @param config.redisMainnet.port Redis server port
