@@ -56,8 +56,8 @@ Postgres Secret
 Redis Secret
 */}}
 {{- define "safe-transaction.redis-secret" -}}
-{{- if .Values.config.redis.secretReferenceKey -}}
-{{- .Values.config.redis.secretReferenceKey }}
+{{- if .Values.config.redisTransaction.secretReferenceKey -}}
+{{- .Values.config.redisTransaction.secretReferenceKey }}
 {{- else -}}
 {{ include "safe-transaction.name" . }}-redis
 {{- end -}}

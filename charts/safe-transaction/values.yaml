@@ -218,21 +218,21 @@ config:
     host: ""
     ## @param config.postgres.port PostgreSQL server port
     port: "5432"
-  redis:
-    ## @param config.redis.secretReferenceKey Reference to an existing secret containing the following entries: REDIS_URL
+  redisTransaction:
+    ## @param config.redisTransaction.secretReferenceKey Reference to an existing secret containing the following entries: REDIS_URL
     # Format redis://<pass>@safe-transaction-redis.safe.svc.cluster.stage:6379
     secretReferenceKey: ""
-    ## @param config.redis.username Redis username
+    ## @param config.redisTransaction.username Redis username
     username: default
-    ## @param config.redis.password Redis user's password
+    ## @param config.redisTransaction.password Redis user's password
     password: ""
-    ## @param config.redis.database Redis database number
+    ## @param config.redisTransaction.database Redis database number
     database: 0
-    ## @param config.redis.host Redis server host
+    ## @param config.redisTransaction.host Redis server host
     host: ""
-    ## @param config.redis.port Redis server port
+    ## @param config.redisTransaction.port Redis server port
     port: "6379"
-    ## @param config.redis.storageClassName StorageClassName
+    ## @param config.redisTransaction.storageClassName StorageClassName
     storageClassName: ""
   rabbitmq:
     ## @param config.rabbitmq.secretReferenceKey Reference to an existing secret containing the following entry: CELERY_BROKER_URL
