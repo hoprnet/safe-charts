@@ -121,3 +121,5 @@ spec:
         - name: media-content
           persistentVolumeClaim:
             claimName: {{ include "safe-config.fullname" . }}-media
+      securityContext:
+        fsGroup: 999
