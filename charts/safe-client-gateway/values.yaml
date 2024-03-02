@@ -77,7 +77,7 @@ image:
 
   ## @param image.repository Docker image repository to deployment
   ##
-  repository: safeglobal/safe-client-gateway
+  repository: safeglobal/safe-client-gateway-nest
 
   ## @param image.tag Docker image tag to deployment
   ##
@@ -108,51 +108,57 @@ service:
 ## @section Config Service Parameters
 
 config:
-  ## @param config.configServiceEndpoint The Base URL of the Safe Config Service
+  httpClient:
+    ## @param config.httpClient.requestTimeout Timeout in milliseconds
+    ##
+    requestTimeout: "60000"
+  ## @param config.safeConfig.url Url of the safe Config service
   ##
-  configServiceEndpoint: https://safe.cluster.local/cfg/
-
-  ## @param config.secretKey Rocket Secret Key. 
-  # Random string (generated with openssl rand -base64 32)
-  # [string] a 256-bit base64 encoded string (44 characters) to use as the secret key
+  safeConfig:
+    url: ""
+  ## @param config.exchange_api.url The base Exchange Rate API to be used.
   ##
-  secretKey: ""
+  exchange_api:
+    url: http://api.exchangeratesapi.io/v1
 
-  ## @param config.webToken Client Gateway Web Token
-  ##
-  webToken: ""
+  redis:
+    ## @param config.redis.host Redis server host
+    host: ""
+    ## @param config.redis.port Redis server port
+    port: "6379"
 
-  ## @param config.transactionServiceToken Client Gateway Web Token
-  ##
-  transactionServiceToken: ""
+  ## @param config.authToken Authentication token to access safe-client-gateway API requests
+  authToken: ""
 
-  ## @param config.secretReferenceKey Reference to an existing secret containing the following entries: ROCKET_SECRET_KEY, WEBHOOK_TOKEN, TRANSACTION_SERVICE_AUTH_TOKEN
+  log:
+    ## @param config.log.level Log level
+    level: info
+    ## @param config.log.silent Silent mode
+    silent: "false"
+
+  alertsProvider:
+    ## @param config.alertsProvider Alerts provider signing key
+    signingKey: ""
+    ## @param config.alertsProvider Alerts provider apiKey
+    apiKey: ""
+    ## @param config.alertsProvider Alerts provider account
+    account: ""
+    ## @param config.alertsProvider Alerts provider project
+    project: ""
+
+  emailApi:
+    applicationCode: ""
+    fromEmail: "changeme@example.com"
+    apiKey: ""
+  emailTemplate:
+    recoveryTx: ""
+    unknownRecoveryTx: ""
+    verificationCode: ""
+  
+  ## @param config.secretReferenceKey Reference to an existing secret containing the following entries: AUTH_TOKEN
   ##
   secretReferenceKey: ""
 
   ## @param config.extraEnvVars [object] Add additional extra environment vairables to the configMap
   ##
   extraEnvVars: {}
-
-  ## @param config.logLevel Allowed hosts
-  ##
-  logLevel: normal
-
-  redis:
-    ## @param config.redis.secretReferenceKey Reference to an existing secret containing the following entries: REDIS_URI
-    secretReferenceKey: ""
-    ## @param config.redis.host Redis server host
-    host: ""
-    ## @param config.redis.port Redis server port
-    port: "6379"
-
-  redisMainnet:
-    ## @param config.redisMainnet.secretReferenceKey Reference to an existing secret containing the following entries: REDIS_URI_MAINNET
-    secretReferenceKey: ""
-    ## @param config.redisMainnet.host Redis server host
-    host: ""
-    ## @param config.redisMainnet.port Redis server port
-    port: "6379"
-
-
-
