@@ -59,10 +59,6 @@ spec:
               {{- else }}
               name: {{ include "safe-client-gateway.fullname" . }}
               {{- end }}
-          - secretRef:
-              name: {{ include "safe-client-gateway.redis-secret" . }}
-          - secretRef:
-              name: {{ include "safe-client-gateway.redis-mainnet-secret" . }}
         ports:
         - containerPort: {{ .Values.service.ports.number }}
           name: {{ .Values.service.ports.name }}
