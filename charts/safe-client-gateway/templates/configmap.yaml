@@ -14,6 +14,7 @@ metadata:
     {{- .Values.commonAnnotations | toYaml | nindent 4 }}
 {{- end }}
 data:
+  APPLICATION_PORT: {{ .Values.config.application_port | quote }}
   HTTP_CLIENT_REQUEST_TIMEOUT_MILLISECONDS: {{ .Values.config.httpClient.requestTimeout | quote }}
   SAFE_CONFIG_BASE_URI: {{ .Values.config.safeConfig.url | quote }}
   EXCHANGE_API_BASE_URI: {{ .Values.config.exchange_api.url | quote }}
