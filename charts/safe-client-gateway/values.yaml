@@ -94,7 +94,7 @@ service:
   type: ClusterIP
   ports:
     ## @param service.ports.number service port number
-    ##  
+    ##
     number: 80
     ## @param service.ports.name service port name
     ##
@@ -108,6 +108,7 @@ service:
 ## @section Config Service Parameters
 
 config:
+  application_port: 80
   httpClient:
     ## @param config.httpClient.requestTimeout Timeout in milliseconds
     ##
@@ -154,7 +155,7 @@ config:
     recoveryTx: ""
     unknownRecoveryTx: ""
     verificationCode: ""
-  
+
   ## @param config.secretReferenceKey Reference to an existing secret containing the following entries: AUTH_TOKEN
   ##
   secretReferenceKey: ""
