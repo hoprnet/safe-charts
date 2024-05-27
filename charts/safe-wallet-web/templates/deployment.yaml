@@ -34,13 +34,13 @@ spec:
         {{- if .Values.resources }}
         resources: {{- toYaml .Values.resources | nindent 12 }}
         {{- else }}
-        resources:
+        resources: # The docker image compiles code at the entrypoint and requires more resources
           limits:
-            cpu: 500m
-            memory: 1024Mi
+            cpu: 2
+            memory: 4Gi
           requests:
-            cpu: 100m
-            memory: 512Mi
+            cpu: 2
+            memory: 4Gi
         {{- end }}
         env:
           - name: NODE_PORT
