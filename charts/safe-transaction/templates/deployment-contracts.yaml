@@ -50,6 +50,8 @@ spec:
             value: "{{ .Values.config.contracts.worker_max_memory }}"
           - name: CELERYD_CONCURRENCY
             value: "{{ .Values.config.contracts.worker_count }}"
+          - name: RUN_MIGRATIONS
+            value: "0"
           - name: WORKER_QUEUES
             value: contracts,tokens
         envFrom:
