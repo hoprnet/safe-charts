@@ -70,6 +70,8 @@ spec:
         volumeMounts:
           - name: tmp-volume
             mountPath: /tmp
+          - name: media-content
+            mountPath: /app/safe_transaction_service/media
       serviceAccountName: {{ include "safe-transaction.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
@@ -86,4 +88,9 @@ spec:
       volumes:
         - name: tmp-volume
           emptyDir: {}
+        - name: media-content
+          persistentVolumeClaim:
+            claimName: {{ include "safe-transaction.fullname" . }}-media
+      securityContext:
+        fsGroup: 999
 
