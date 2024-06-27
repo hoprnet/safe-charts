@@ -36,7 +36,7 @@ data:
 
         ## Backend service
         upstream backend_server {
-          server localhost:{{ .Values.service.socket.number}} fail_timeout=0;
+          server 127.0.0.1:{{ .Values.service.socket.number }} fail_timeout=0;
           keepalive 32;
         }
 
