@@ -27,6 +27,11 @@ spec:
         app.kubernetes.io/instance: {{ include "safe-wallet-web.name" . }}
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
+      initContainers:
+      # This container is used to allocate resources from the node, as these resources are only needed at startup while compiling but not later
+      - image: busybox
+        name: resource-allocation
+        resources: {{- toYaml .Values.initContainers.resources | nindent 10 }}
       containers:
       - name: web
         image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"

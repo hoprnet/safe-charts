@@ -40,8 +40,21 @@ resources:
     cpu: 2
     memory: 5Gi
   requests:
-    cpu: 2
-    memory: 4Gi
+    cpu: 100m
+    memory: 250Mi
+
+## @param initContainers.resources Resource specification to deployment initContainer busybox
+## The main docker image compiles code at the entrypoint and requires more resources. An OOMKilled error will occur if resources are lower than 4Gi
+## An initContainer is used to allocate resources from the node, as these resources are only needed at startup while compiling but not later
+##
+initContainers:
+  resources:
+    limits:
+      cpu: 2
+      memory: 5Gi
+    requests:
+      cpu: 2
+      memory: 5Gi
 
 ## @param tolerations Tolerations specifications to deployment
 ##
