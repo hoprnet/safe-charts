@@ -27,21 +27,16 @@ spec:
         app.kubernetes.io/instance: {{ include "safe-wallet-web.name" . }}
         app.kubernetes.io/name: {{ .Release.Name }}
     spec:
+      initContainers:
+      # This container is used to allocate resources from the node, as these resources are only needed at startup while compiling but not later
+      - image: busybox
+        name: resource-allocation
+        resources: {{- toYaml .Values.initContainers.resources | nindent 10 }}
       containers:
       - name: web
         image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        {{- if .Values.resources }}
-        resources: {{- toYaml .Values.resources | nindent 12 }}
-        {{- else }}
-        resources: # The docker image compiles code at the entrypoint and requires more resources
-          limits:
-            cpu: 2
-            memory: 4Gi
-          requests:
-            cpu: 2
-            memory: 4Gi
-        {{- end }}
+        resources: {{- toYaml .Values.resources | nindent 10 }}
         env:
           - name: NODE_PORT
             value: "{{ .Values.service.ports.number }}"
