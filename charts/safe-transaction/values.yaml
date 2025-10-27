@@ -186,7 +186,7 @@ config:
 
   ## @param config.notifications app-specific configuration values for notifications worker
   notifications:
-    db_max_conns: "2"
+    db_max_conns: "4"
     worker_max_memory: "1097152" # in KB, all RAM divided by workers
     worker_count: "2" # 2x core count
 

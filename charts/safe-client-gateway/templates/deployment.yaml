@@ -54,18 +54,13 @@ spec:
           - configMapRef:
               name: {{ include "safe-client-gateway.fullname" . }}
           - secretRef:
-              {{- if .Values.config.secretReferenceKey }}
-              name: {{ .Values.config.secretReferenceKey }}
-              {{- else }}
               name: {{ include "safe-client-gateway.fullname" . }}
-              {{- end }}
+          - secretRef:
+              name: {{ include "safe-client-gateway.fullname" . }}-postgres
         ports:
         - containerPort: {{ .Values.service.ports.number }}
           name: {{ .Values.service.ports.name }}
           protocol: TCP
-        # volumeMounts:
-        #   - name: tmp-volume
-        #     mountPath: /tmp
       serviceAccountName: {{ include "safe-client-gateway.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
@@ -79,7 +74,3 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      # volumes:
-      #   - name: tmp-volume
-      #     emptyDir: {} 
-

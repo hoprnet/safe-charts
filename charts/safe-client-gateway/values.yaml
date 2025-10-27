@@ -108,18 +108,10 @@ service:
 ## @section Config Service Parameters
 
 config:
-  httpClient:
-    ## @param config.httpClient.requestTimeout Timeout in milliseconds
-    ##
-    requestTimeout: "60000"
   ## @param config.safeConfig.url Url of the safe Config service
   ##
   safeConfig:
     url: ""
-  ## @param config.exchange_api.url The base Exchange Rate API to be used.
-  ##
-  exchange_api:
-    url: http://api.exchangeratesapi.io/v1
 
   redis:
     ## @param config.redis.host Redis server host
@@ -130,35 +122,26 @@ config:
   ## @param config.authToken Authentication token to access safe-client-gateway API requests
   authToken: ""
 
-  log:
-    ## @param config.log.level Log level
-    level: info
-    ## @param config.log.silent Silent mode
-    silent: "false"
+  jwt:
+    ## @param config.jwt.issuer JWT issuer for tokens issued by safe-client-gateway
+    issuer: ""
+    ## @param config.jwt.secret JWT secret for tokens issued by safe-client-gateway
+    secret: ""
 
-  alertsProvider:
-    ## @param config.alertsProvider Alerts provider signing key
-    signingKey: ""
-    ## @param config.alertsProvider Alerts provider apiKey
-    apiKey: ""
-    ## @param config.alertsProvider Alerts provider account
-    account: ""
-    ## @param config.alertsProvider Alerts provider project
-    project: ""
-
-  emailApi:
-    applicationCode: ""
-    fromEmail: "changeme@example.com"
-    apiKey: ""
-  emailTemplate:
-    recoveryTx: ""
-    unknownRecoveryTx: ""
-    verificationCode: ""
-
-  ## @param config.secretReferenceKey Reference to an existing secret containing the following entries: AUTH_TOKEN
-  ##
-  secretReferenceKey: ""
 
   ## @param config.extraEnvVars [object] Add additional extra environment vairables to the configMap
   ##
   extraEnvVars: {}
+
+
+postgres:
+  ## @param config.postgres.username PostgreSQL user
+  username: ""
+  ## @param config.postgres.password PostgreSQL user's password
+  password: ""
+  ## @param config.postgres.database PostgreSQL database name
+  database: safe-cgw
+  ## @param config.postgres.host PostgreSQL server host
+  host: ""
+  ## @param config.postgres.port PostgreSQL server port
+  port: "5432"
