@@ -140,8 +140,8 @@ config:
   cgw:
     ## @param config.cgw.url The Client Gateway URL. This is for triggering webhooks to invalidate its cache for example
     url: "http://safe-client-gateway.safe.svc.cluster.local"
-    ## @param config.cgw.webToken Flush Token
-    webToken: ""
+    ## @param config.cgw.authToken Authentication token
+    authToken: ""
   ## @param config.secretReferenceKey Reference to an existing secret containing the following entries: SECRET_KEY, CGW_FLUSH_TOKEN
   secretReferenceKey: ""
   ## @param config.pythonDontWriteBytecode pythonDontWriteBytecode

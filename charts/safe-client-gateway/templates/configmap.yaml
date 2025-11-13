@@ -15,23 +15,38 @@ metadata:
 {{- end }}
 data:
   APPLICATION_PORT: {{ .Values.service.ports.number | quote }}
-  HTTP_CLIENT_REQUEST_TIMEOUT_MILLISECONDS: {{ .Values.config.httpClient.requestTimeout | quote }}
   SAFE_CONFIG_BASE_URI: {{ .Values.config.safeConfig.url | quote }}
-  EXCHANGE_API_BASE_URI: {{ .Values.config.exchange_api.url | quote }}
   REDIS_HOST: {{ .Values.config.redis.host | quote }}
-  REDIS_PORT: {{ .Values.config.redis.port | quote }}
-  LOG_LEVEL: {{ .Values.config.log.level | quote }}
-  LOG_SILENT: {{ .Values.config.log.silent | quote }}
-  ALERTS_PROVIDER_SIGNING_KEY: {{ .Values.config.alertsProvider.signingKey | quote }}
-  ALERTS_PROVIDER_API_KEY: {{ .Values.config.alertsProvider.apiKey | quote }}
-  ALERTS_PROVIDER_ACCOUNT: {{ .Values.config.alertsProvider.account | quote }}
-  ALERTS_PROVIDER_PROJECT: {{ .Values.config.alertsProvider.project | quote }}
-  EMAIL_API_APPLICATION_CODE: {{ .Values.config.emailApi.applicationCode | quote }}
-  EMAIL_API_FROM_EMAIL: {{ .Values.config.emailApi.fromEmail | quote }}
-  EMAIL_API_KEY: {{ .Values.config.emailApi.apiKey | quote }}
-  EMAIL_TEMPLATE_RECOVERY_TX: {{ .Values.config.emailTemplate.recoveryTx | quote }}
-  EMAIL_TEMPLATE_UNKNOWN_RECOVERY_TX: {{ .Values.config.emailTemplate.unknownRecoveryTx | quote }}
-  EMAIL_TEMPLATE_VERIFICATION_CODE: {{ .Values.config.emailTemplate.verificationCode | quote }}
-  {{- if .Values.config.extraEnvVars }}
+  REDIS_PORT: {{ .Values.config.redis.port | toString | quote }}
+  FINGERPRINT_ENCRYPTION_KEY: ''
+  RELAY_PROVIDER_API_KEY_OPTIMISM: ''
+  RELAY_PROVIDER_API_KEY_BSC: ''
+  RELAY_PROVIDER_API_KEY_POLYGON: ''
+  RELAY_PROVIDER_API_KEY_POLYGON_ZKEVM: ''
+  RELAY_PROVIDER_API_KEY_BASE: ''
+  RELAY_PROVIDER_API_KEY_AVALANCHE: ''
+  RELAY_PROVIDER_API_KEY_LINEA: ''
+  RELAY_PROVIDER_API_KEY_BLAST: ''
+  STAKING_API_KEY: ''
+  STAKING_TESTNET_API_KEY: ''
+  EMAIL_API_APPLICATION_CODE: ''
+  EMAIL_API_FROM_EMAIL: 'tech@hoprnet.org'
+  EMAIL_API_KEY: ''
+  EMAIL_TEMPLATE_RECOVERY_TX: ''
+  EMAIL_TEMPLATE_UNKNOWN_RECOVERY_TX: ''
+  EMAIL_TEMPLATE_VERIFICATION_CODE: ''
+  INFURA_API_KEY: ''
+  PUSH_NOTIFICATIONS_API_PROJECT: ''
+  PUSH_NOTIFICATIONS_API_SERVICE_ACCOUNT_CLIENT_EMAIL: 'tech@hoprnet.org'
+  PUSH_NOTIFICATIONS_API_SERVICE_ACCOUNT_PRIVATE_KEY: ''
+  RELAY_PROVIDER_API_KEY_GNOSIS_CHAIN: ''
+  RELAY_PROVIDER_API_KEY_ARBITRUM_ONE: ''
+  RELAY_PROVIDER_API_KEY_SEPOLIA: ''
+  CSV_AWS_ACCESS_KEY_ID: ""
+  CSV_AWS_SECRET_ACCESS_KEY: ""
+  AWS_ACCESS_KEY_ID: ""
+  AWS_SECRET_ACCESS_KEY: ""
+  BRIDGE_API_KEY: ""
+  {{- if .Values.config.extraEnvVars -}}
   {{ .Values.config.extraEnvVars | toYaml | nindent 2 }}
   {{- end }}

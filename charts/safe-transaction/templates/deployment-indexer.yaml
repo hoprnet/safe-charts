@@ -53,7 +53,7 @@ spec:
           - name: RUN_MIGRATIONS
             value: "{{ .Values.config.indexer.run_migrations }}"
           - name: WORKER_QUEUES
-            value: default,indexing
+            value: default,indexing,processing
         envFrom:
           - configMapRef:
               name: {{ include "safe-transaction.fullname" . }}
