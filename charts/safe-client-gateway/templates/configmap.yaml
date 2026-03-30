@@ -47,6 +47,11 @@ data:
   AWS_ACCESS_KEY_ID: ""
   AWS_SECRET_ACCESS_KEY: ""
   BRIDGE_API_KEY: ""
+  BLOCKLIST_ENABLED: "false"
+  BLOCKLIST_ENCRYPTED_DATA: dummy-encrypted-data
+  BLOCKLIST_SECRET_KEY: 5403fdc3516efd310429ad84d105d428aaa633b1e1e74e0329c8929dc6733139
+  BLOCKLIST_SECRET_SALT: c29199c8a64cf0bfa1f8c86754d4bb33
+  RELAY_PROVIDER_API_KEY_UNICHAIN: dummy-api-key
   {{- if .Values.config.extraEnvVars -}}
   {{ .Values.config.extraEnvVars | toYaml | nindent 2 }}
   {{- end }}
