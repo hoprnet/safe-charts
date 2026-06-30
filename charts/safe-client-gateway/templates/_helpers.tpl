@@ -42,6 +42,17 @@ app.kubernetes.io/instance: {{ include "safe-client-gateway.name" . }}
 {{- end }}
 
 {{/*
+Postgres Secret
+*/}}
+{{- define "safe-client-gateway.postgres-secret" -}}
+{{- if .Values.postgres.secretReferenceKey -}}
+{{- .Values.postgres.secretReferenceKey }}
+{{- else -}}
+{{ include "safe-client-gateway.name" . }}-postgres
+{{- end -}}
+{{- end -}}
+
+{{/*
 Redis Secret
 */}}
 {{- define "safe-client-gateway.redis-secret" -}}

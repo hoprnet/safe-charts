@@ -135,13 +135,15 @@ config:
 
 
 postgres:
-  ## @param config.postgres.username PostgreSQL user
+  ## @param postgres.secretReferenceKey Reference to an existing secret containing the following entries: POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD
+  secretReferenceKey: ""
+  ## @param postgres.username PostgreSQL user
   username: ""
-  ## @param config.postgres.password PostgreSQL user's password
+  ## @param postgres.password PostgreSQL user's password
   password: ""
-  ## @param config.postgres.database PostgreSQL database name
+  ## @param postgres.database PostgreSQL database name
   database: safe-cgw
-  ## @param config.postgres.host PostgreSQL server host
+  ## @param postgres.host PostgreSQL server host
   host: ""
-  ## @param config.postgres.port PostgreSQL server port
+  ## @param postgres.port PostgreSQL server port
   port: "5432"
