@@ -155,6 +155,39 @@ ingress:
   ##
   annotations: {}
 
+networkPolicy:
+  ## @param networkPolicy.enabled Create NetworkPolicies for this workload
+  ##
+  enabled: false
+
+  ingress:
+    ## @param networkPolicy.ingress.namespace Namespace the ingress controller runs in
+    ##
+    namespace: ingress-nginx
+
+    ## @param networkPolicy.ingress.podSelector [object] Labels matching the ingress controller's pods
+    ##
+    podSelector:
+      app.kubernetes.io/name: nginx-external
+      app.kubernetes.io/instance: nginx-external
+
+  rabbitmq:
+    ## @param networkPolicy.rabbitmq.namespace Namespace RabbitMQ runs in
+    ## Covers all safe-transaction components (web, indexer, scheduler, contracts, notifications) - they share this
+    ## podSelector and are all Celery producers/consumers against the same broker.
+    ##
+    namespace: rabbitmq
+
+    ## @param networkPolicy.rabbitmq.podSelector [object] Labels matching RabbitMQ's pods
+    ##
+    podSelector:
+      app.kubernetes.io/name: rabbitmq-ha-cluster
+      app.kubernetes.io/component: rabbitmq
+
+    ## @param networkPolicy.rabbitmq.port RabbitMQ port
+    ##
+    port: 5672
+
 ## @section Configuration Parameters
 ##
 config:

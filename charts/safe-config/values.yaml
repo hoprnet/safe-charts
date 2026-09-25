@@ -126,6 +126,22 @@ ingress:
   ##
   annotations: {}
 
+networkPolicy:
+  ## @param networkPolicy.enabled Create NetworkPolicies for this workload
+  ##
+  enabled: false
+
+  ingress:
+    ## @param networkPolicy.ingress.namespace Namespace the ingress controller runs in
+    ##
+    namespace: ingress-nginx
+
+    ## @param networkPolicy.ingress.podSelector [object] Labels matching the ingress controller's pods
+    ##
+    podSelector:
+      app.kubernetes.io/name: nginx-external
+      app.kubernetes.io/instance: nginx-external
+
 ## @section Config Service Parameters
 
 config:
