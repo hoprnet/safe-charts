@@ -1,0 +1,30 @@
+{{- if .Values.networkPolicy.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "safe-transaction.fullname" . }}-allow-rabbitmq-egress
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "safe-transaction.labels" . | nindent 4 }}
+    {{- if .Values.commonLabels }}
+    {{- .Values.commonLabels | toYaml | nindent 4 }}
+    {{- end }}
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ include "safe-transaction.name" . }}
+      app.kubernetes.io/name: {{ .Release.Name }}
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: {{ .Values.networkPolicy.rabbitmq.namespace }}
+          podSelector:
+            matchLabels:
+              {{- .Values.networkPolicy.rabbitmq.podSelector | toYaml | nindent 14 }}
+      ports:
+        - protocol: TCP
+          port: {{ .Values.networkPolicy.rabbitmq.port }}
+{{- end }}

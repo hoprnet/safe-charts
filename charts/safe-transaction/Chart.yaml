@@ -1,7 +1,7 @@
 ---
 apiVersion: v2
 name: safe-transaction
-version: 0.1.19
+version: 0.1.20
 appVersion: v5.35.0
 description: A Helm chart for transaction service
 type: application
