@@ -89,11 +89,11 @@ affinity: {}
 image:
   ## @param image.registry Docker registry to deployment
   ##
-  registry: registry.hub.docker.com
+  registry: ghcr.io
 
   ## @param image.repository Docker image repository to deployment
   ##
-  repository: safeglobal/safe-client-gateway-nest
+  repository: safe-global/safe-client-gateway
 
   ## @param image.tag Docker image tag to deployment
   ##
