@@ -109,11 +109,11 @@ persistence:
 image:
   ## @param image.registry Docker registry to deployment
   ##
-  registry: registry.hub.docker.com
+  registry: ghcr.io
 
   ## @param image.repository Docker image repository to deployment
   ##
-  repository: safeglobal/safe-transaction-service
+  repository: safe-global/safe-transaction-service
 
   ## @param image.tag Docker image tag to deployment
   ##

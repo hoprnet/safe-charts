@@ -26,8 +26,8 @@ This chart packages the Safe Client Gateway resources. The chart assumes that th
 | `resources`                | Resource specification to deployment                             | `{}`                                |
 | `tolerations`              | Tolerations specifications to deployment                         | `[]`                                |
 | `affinity`                 | Affinity specifications to deployment                            | `{}`                                |
-| `image.registry`           | Docker registry to deployment                                    | `registry.hub.docker.com`           |
-| `image.repository`         | Docker image repository to deployment                            | `safeglobal/safe-client-gateway`    |
+| `image.registry`           | Docker registry to deployment                                    | `ghcr.io`           |
+| `image.repository`         | Docker image repository to deployment                            | `safe-global/safe-client-gateway`    |
 | `image.tag`                | Docker image tag to deployment                                   | `""`                                |
 | `image.pullPolicy`         | Pull policy to deployment as deinfed in                          | `IfNotPresent`                      |
 | `service.type`             | service type                                                     | `ClusterIP`                         |

@@ -23,8 +23,8 @@ This chart packages the Safe transaction service resources. The chart assumes th
 | `resources`                | Resource specification to deployment                             | `{}`                                  |
 | `tolerations`              | Tolerations specifications to deployment                         | `[]`                                  |
 | `affinity`                 | Affinity specifications to deployment                            | `{}`                                  |
-| `image.registry`           | Docker registry to deployment                                    | `registry.hub.docker.com`             |
-| `image.repository`         | Docker image repository to deployment                            | `safeglobal/safe-transaction-service` |
+| `image.registry`           | Docker registry to deployment                                    | `ghcr.io`             |
+| `image.repository`         | Docker image repository to deployment                            | `safe-global/safe-transaction-service` |
 | `image.tag`                | Docker image tag to deployment                                   | `""`                                  |
 | `image.pullPolicy`         | Pull policy to deployment as deinfed in                          | `IfNotPresent`                        |
 | `service.type`             | service type                                                     | `ClusterIP`                           |
