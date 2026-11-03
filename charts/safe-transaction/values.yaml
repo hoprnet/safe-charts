@@ -30,7 +30,7 @@ replicas:
 
 ## @param strategy Strategy for deployment
 ##
-strategy: "RollingUpdate"
+strategy: "Recreate"
 
 ## @param commonLabels [object] Labels to add to all related objects
 ##
