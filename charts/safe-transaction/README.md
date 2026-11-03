@@ -16,7 +16,7 @@ This chart packages the Safe transaction service resources. The chart assumes th
 | Name                       | Description                                                      | Value                                 |
 | -------------------------- | ---------------------------------------------------------------- | ------------------------------------- |
 | `replicas`                 | Replicas for deployment                                          | `1`                                   |
-| `strategy`                 | Strategy for deployment                                          | `RollingUpdate`                       |
+| `strategy`                 | Strategy for deployment                                          | `Recreate`                            |
 | `commonLabels`             | Labels to add to all related objects                             | `{}`                                  |
 | `commonAnnotations`        | Annotations to to all related objects                            | `{}`                                  |
 | `nodeSelector`             | Object containing node selection constraint to deployment        | `{}`                                  |
