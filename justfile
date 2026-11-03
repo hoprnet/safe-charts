@@ -21,3 +21,18 @@ package chart:
 # Deploys helm package to GCP artifact registry
 publish chart:
     helm push {{chart}}-$(yq '.version' charts/{{chart}}/Chart.yaml).tgz oci://europe-west3-docker.pkg.dev/hoprassociation/helm-charts
+
+# Builds and pushes an amd64 safe-client-gateway image (Safe only publishes arm64 images upstream)
+build-client-gateway version:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    image="europe-west3-docker.pkg.dev/hoprassociation/docker-images/safe-client-gateway:{{version}}"
+    src="$(mktemp -d)"
+    trap 'rm -rf "${src}"' EXIT
+    gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin europe-west3-docker.pkg.dev
+    git clone --quiet --depth 1 --branch {{version}} https://github.com/safe-global/safe-client-gateway.git "${src}"
+    # VERSION must equal the tag: the app reports it on /v1/about
+    docker buildx build --platform linux/amd64 \
+        --build-arg VERSION={{version}} \
+        --build-arg BUILD_NUMBER="$(git -C "${src}" rev-parse --short HEAD)" \
+        --tag "${image}" --push "${src}"
