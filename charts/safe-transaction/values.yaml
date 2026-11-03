@@ -32,6 +32,10 @@ replicas:
 ##
 strategy: "RollingUpdate"
 
+## @param strategyIndexer Strategy for the indexer deployment, defaults to `strategy` when empty
+##
+strategyIndexer: ""
+
 ## @param commonLabels [object] Labels to add to all related objects
 ##
 commonLabels: {}

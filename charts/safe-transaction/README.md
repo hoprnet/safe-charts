@@ -17,6 +17,7 @@ This chart packages the Safe transaction service resources. The chart assumes th
 | -------------------------- | ---------------------------------------------------------------- | ------------------------------------- |
 | `replicas`                 | Replicas for deployment                                          | `1`                                   |
 | `strategy`                 | Strategy for deployment                                          | `RollingUpdate`                       |
+| `strategyIndexer`          | Strategy for the indexer deployment, defaults to `strategy`      | `""`                                  |
 | `commonLabels`             | Labels to add to all related objects                             | `{}`                                  |
 | `commonAnnotations`        | Annotations to to all related objects                            | `{}`                                  |
 | `nodeSelector`             | Object containing node selection constraint to deployment        | `{}`                                  |

@@ -16,7 +16,7 @@ metadata:
 spec:
   replicas: {{ .Values.replicas.indexer }}
   strategy:
-    type: {{ .Values.strategy }}
+    type: {{ .Values.strategyIndexer | default .Values.strategy }}
   selector:
     matchLabels:
       app.kubernetes.io/component: indexer
