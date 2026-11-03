@@ -34,6 +34,8 @@ nodeSelector: {}
 
 ## @param resources Resource specification to deployment
 ## The image serves a prebuilt static site (see `just build-wallet-web`), so it needs very little
+## resources. NEXT_PUBLIC_* values are baked in at image build time; the ConfigMap env vars
+## generated from `config.*` no longer affect the web app.
 ##
 resources:
   limits:
@@ -128,7 +130,7 @@ config:
   ## @param config.gatewayUrl The Client Gateway URL. This is for triggering webhooks to invalidate its cache for example
   gatewayUrl: "http://safe-client-gateway.safe.svc.cluster.local"
 
-  ## @param config.isProduction
+  ## @param config.isProduction Only written to the ConfigMap: baked in at image build time (`just build-wallet-web`)
   isProduction: false
 
   ## @param config.secretReferenceKey Reference to an existing secret containing the following entries: SECRET_KEY, CGW_FLUSH_TOKEN
