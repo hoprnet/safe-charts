@@ -33,28 +33,17 @@ commonAnnotations: {}
 nodeSelector: {}
 
 ## @param resources Resource specification to deployment
-## The docker image compiles code at the entrypoint and requires more resources. An OOMKilled error will occur if resources are lower than 4Gi
+## The image serves a prebuilt static site (see `just build-wallet-web`), so it needs very little
+## resources. NEXT_PUBLIC_* values are baked in at image build time; the ConfigMap env vars
+## generated from `config.*` no longer affect the web app.
 ##
 resources:
   limits:
-    cpu: 2
-    memory: 5Gi
+    cpu: 500m
+    memory: 256Mi
   requests:
-    cpu: 100m
-    memory: 250Mi
-
-## @param initContainers.resources Resource specification to deployment initContainer busybox
-## The main docker image compiles code at the entrypoint and requires more resources. An OOMKilled error will occur if resources are lower than 4Gi
-## An initContainer is used to allocate resources from the node, as these resources are only needed at startup while compiling but not later
-##
-initContainers:
-  resources:
-    limits:
-      cpu: 2
-      memory: 5Gi
-    requests:
-      cpu: 2
-      memory: 5Gi
+    cpu: 50m
+    memory: 64Mi
 
 ## @param tolerations Tolerations specifications to deployment
 ##
@@ -67,11 +56,11 @@ affinity: {}
 image:
   ## @param image.registry Docker registry to deployment
   ##
-  registry: ghcr.io
+  registry: europe-west3-docker.pkg.dev
 
   ## @param image.repository Docker image repository to deployment
   ##
-  repository: safe-global/safe-wallet-web
+  repository: hoprassociation/docker-images/safe-wallet-web
 
   ## @param image.tag Docker image tag to deployment
   ##
@@ -141,7 +130,7 @@ config:
   ## @param config.gatewayUrl The Client Gateway URL. This is for triggering webhooks to invalidate its cache for example
   gatewayUrl: "http://safe-client-gateway.safe.svc.cluster.local"
 
-  ## @param config.isProduction
+  ## @param config.isProduction Only written to the ConfigMap: baked in at image build time (`just build-wallet-web`)
   isProduction: false
 
   ## @param config.secretReferenceKey Reference to an existing secret containing the following entries: SECRET_KEY, CGW_FLUSH_TOKEN

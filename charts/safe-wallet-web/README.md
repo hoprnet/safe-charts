@@ -23,8 +23,8 @@ This chart packages the Safe wallet web resources.
 | `resources`                | Resource specification to deployment                             | `{}`                         |
 | `tolerations`              | Tolerations specifications to deployment                         | `[]`                         |
 | `affinity`                 | Affinity specifications to deployment                            | `{}`                         |
-| `image.registry`           | Docker registry to deployment                                    | `ghcr.io`    |
-| `image.repository`         | Docker image repository to deployment                            | `safe-global/safe-wallet-web` |
+| `image.registry`           | Docker registry to deployment                                    | `europe-west3-docker.pkg.dev` |
+| `image.repository`         | Docker image repository to deployment                            | `hoprassociation/docker-images/safe-wallet-web` |
 | `image.tag`                | Docker image tag to deployment                                   | `""`                         |
 | `image.pullPolicy`         | Pull policy to deployment as deinfed in                          | `IfNotPresent`               |
 | `service.type`             | service type                                                     | `ClusterIP`                  |
@@ -40,6 +40,6 @@ This chart packages the Safe wallet web resources.
 | Name                        | Description                                                                                   | Value                                               |
 | --------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | `config.extraEnvVars`       | Add additional extra environment vairables to the configMap                                   | `{}`                                                |
-| `config.gatewayUrl`         | The Client Gateway URL. This is for triggering webhooks to invalidate its cache for example   | `http://safe-client-gateway.safe.svc.cluster.local` |
-| `config.isProduction`       |                                                                                               | `false`                                             |
+| `config.gatewayUrl`         | The Client Gateway URL. Only written to the ConfigMap: the web app has it baked in at image build time | `http://safe-client-gateway.safe.svc.cluster.local` |
+| `config.isProduction`       | Only written to the ConfigMap: baked in at image build time                                   | `false`                                             |
 | `config.secretReferenceKey` | Reference to an existing secret containing the following entries: SECRET_KEY, CGW_FLUSH_TOKEN | `""`                                                |
