@@ -36,3 +36,19 @@ build-client-gateway version:
         --build-arg VERSION={{version}} \
         --build-arg BUILD_NUMBER="$(git -C "${src}" rev-parse --short HEAD)" \
         --tag "${image}" --push "${src}"
+
+# Builds and pushes a safe-wallet-web image with the static site prebuilt for an environment (staging|prod)
+build-wallet-web version env:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    image="europe-west3-docker.pkg.dev/hoprassociation/docker-images/safe-wallet-web:{{version}}-{{env}}"
+    src="$(mktemp -d)"
+    trap 'rm -rf "${src}"' EXIT
+    gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin europe-west3-docker.pkg.dev
+    git clone --quiet --depth 1 --branch web-{{version}} https://github.com/safe-global/safe-wallet-monorepo.git "${src}"
+    # NEXT_PUBLIC_* are inlined at build time, so the gateway URL of the environment is baked in
+    docker buildx build --platform linux/amd64 \
+        -f docker/safe-wallet-web/Dockerfile \
+        --build-arg GATEWAY_URL=https://safe-client-gateway.{{env}}.hoprnet.link \
+        --build-arg COMMIT_HASH="$(git -C "${src}" rev-parse --short HEAD)" \
+        --tag "${image}" --push "${src}"

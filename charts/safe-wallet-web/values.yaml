@@ -33,28 +33,15 @@ commonAnnotations: {}
 nodeSelector: {}
 
 ## @param resources Resource specification to deployment
-## The docker image compiles code at the entrypoint and requires more resources. An OOMKilled error will occur if resources are lower than 4Gi
+## The image serves a prebuilt static site (see `just build-wallet-web`), so it needs very little
 ##
 resources:
   limits:
-    cpu: 2
-    memory: 5Gi
+    cpu: 500m
+    memory: 256Mi
   requests:
-    cpu: 100m
-    memory: 250Mi
-
-## @param initContainers.resources Resource specification to deployment initContainer busybox
-## The main docker image compiles code at the entrypoint and requires more resources. An OOMKilled error will occur if resources are lower than 4Gi
-## An initContainer is used to allocate resources from the node, as these resources are only needed at startup while compiling but not later
-##
-initContainers:
-  resources:
-    limits:
-      cpu: 2
-      memory: 5Gi
-    requests:
-      cpu: 2
-      memory: 5Gi
+    cpu: 50m
+    memory: 64Mi
 
 ## @param tolerations Tolerations specifications to deployment
 ##
@@ -67,11 +54,11 @@ affinity: {}
 image:
   ## @param image.registry Docker registry to deployment
   ##
-  registry: ghcr.io
+  registry: europe-west3-docker.pkg.dev
 
   ## @param image.repository Docker image repository to deployment
   ##
-  repository: safe-global/safe-wallet-web
+  repository: hoprassociation/docker-images/safe-wallet-web
 
   ## @param image.tag Docker image tag to deployment
   ##
