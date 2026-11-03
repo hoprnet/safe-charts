@@ -89,11 +89,11 @@ affinity: {}
 image:
   ## @param image.registry Docker registry to deployment
   ##
-  registry: ghcr.io
+  registry: europe-west3-docker.pkg.dev
 
   ## @param image.repository Docker image repository to deployment
   ##
-  repository: safe-global/safe-client-gateway
+  repository: hoprassociation/docker-images/safe-client-gateway
 
   ## @param image.tag Docker image tag to deployment
   ##
