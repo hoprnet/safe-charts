@@ -1,7 +1,7 @@
 # Builds the safe-wallet-web static export once, so the container does not compile at startup
 # (upstream image runs `yarn static-serve` = `next build` + serve on every start).
 #
-# NEXT_PUBLIC_* values are inlined at build time, so one image is built per environment.
+# NEXT_PUBLIC_* values are inlined at build time, so the gateway URL is baked into the image.
 #
 # The export is plain HTML/JS, so the build stage runs on the build host's native platform
 # (fast, no emulation) and only the small serve stage is built for the target platform.
